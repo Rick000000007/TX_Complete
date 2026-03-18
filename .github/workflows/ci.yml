@@ -65,7 +65,7 @@ jobs:
       - name: Run Kotlin Linter (ktlint)
         uses: musichin/ktlint-check@v3
         with:
-          ktlint-version: '1.0.1'
+          ktlint-version: '0.50.0'
 
       # Build Debug APK with NDK
       - name: Build Debug APK
