@@ -1,35 +1,39 @@
-steps:
-  - name: Checkout
-    uses: actions/checkout@v4
+name: Build Android APK
 
-  - name: Setup JDK 17
-    uses: actions/setup-java@v4
-    with:
-      distribution: temurin
-      java-version: '17'
+on:
+  push:
+    branches: [ main ]
+  pull_request:
 
-  - name: Setup Android SDK
-    uses: android-actions/setup-android@v3
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-  - name: Make gradlew executable
-    run: chmod +x gradlew
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-  # 🔥 BUILD FIRST
-  - name: Build APK
-    run: ./gradlew clean assembleDebug --stacktrace --info
+      - name: Setup JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
 
-  # 🔍 THEN CHECK
-  - name: Find APK
-    run: find . -name "*.apk"
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
 
-  # 📦 THEN UPLOAD
-  - name: Upload APK
-    uses: actions/upload-artifact@v4
-    with:
-      name: tx-terminal-debug
-      path: app/build/outputs/apk/**/*.apk
+      - name: Make gradlew executable
+        run: chmod +x gradlew
 
+      - name: Build APK
+        run: ./gradlew clean assembleDebug --stacktrace --info
 
+      - name: Find APK
+        run: find . -name "*.apk"
 
-
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: tx-terminal-debug
+          path: app/build/outputs/apk/**/*.apk
 
