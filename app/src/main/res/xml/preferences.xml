@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Appearance">
+        <SeekBarPreference
+            android:key="font_size"
+            android:title="Font Size"
+            android:defaultValue="14"
+            android:min="8"
+            android:max="24" />
+    </PreferenceCategory>
+</PreferenceScreen>
+
