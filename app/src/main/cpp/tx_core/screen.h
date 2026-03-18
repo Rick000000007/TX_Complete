@@ -4,7 +4,7 @@
 #include <string>
 #include <mutex>
 #include <cstdint>
-#include "include/tx/core/cell.h"
+#include "tx/core/cell.h"
 
 namespace tx {
 
